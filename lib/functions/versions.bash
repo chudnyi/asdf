@@ -1,3 +1,5 @@
+. "$(dirname "$(dirname "${BASH_SOURCE[0]}")")/../utils.bash"
+
 version_command() {
   local cmd=$1
   local plugin_name=$2
@@ -20,7 +22,7 @@ version_command() {
   file_name="$(version_file_name)"
 
   if [ "$cmd" = "global" ]; then
-    file="$HOME/$file_name"
+    file="$(asdf_data_dir)/$file_name"
   elif [ "$cmd" = "local-tree" ]; then
     file=$(find_tool_versions)
   else # cmd = local

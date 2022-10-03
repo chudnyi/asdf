@@ -218,7 +218,7 @@ find_versions() {
     search_path=$(dirname "$search_path")
   done
 
-  get_version_in_dir "$plugin_name" "$HOME" "$legacy_filenames"
+  get_version_in_dir "$plugin_name" "$(asdf_data_dir)" "$legacy_filenames"
 
   if [ -f "$ASDF_DEFAULT_TOOL_VERSIONS_FILENAME" ]; then
     versions=$(parse_asdf_version_file "$ASDF_DEFAULT_TOOL_VERSIONS_FILENAME" "$plugin_name")
@@ -376,7 +376,7 @@ get_asdf_config_value_from_file() {
 
 get_asdf_config_value() {
   local key=$1
-  local config_path=${ASDF_CONFIG_FILE:-"$HOME/.asdfrc"}
+  local config_path=${ASDF_CONFIG_FILE:-"$(asdf_dir)/.asdfrc"}
   local default_config_path=${ASDF_CONFIG_DEFAULT_FILE:-"$(asdf_dir)/defaults"}
 
   local local_config_path
