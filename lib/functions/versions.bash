@@ -1,4 +1,4 @@
-. "$(dirname "$(dirname "${BASH_SOURCE[0]}")")/../utils.bash"
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../utils.bash"
 
 version_command() {
   local cmd=$1
