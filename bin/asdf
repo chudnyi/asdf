@@ -70,7 +70,7 @@ asdf_cmd() {
     IFS=' ' read -r ASDF_CMD_FILE args_offset <<<"$(find_plugin_cmd "$@")"
   fi
 
-  if [ -x "$ASDF_CMD_FILE" ]; then
+  if is_file_executive "$ASDF_CMD_FILE"; then
     exec "$ASDF_CMD_FILE" "${@:${args_offset}}"
   elif [ -f "$ASDF_CMD_FILE" ]; then
     set -- "${@:${args_offset}}"

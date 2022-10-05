@@ -8,6 +8,15 @@ GREP_COLORS=
 ASDF_DIR=${ASDF_DIR:-''}
 ASDF_DATA_DIR=${ASDF_DATA_DIR:-''}
 
+is_file_executive() {
+  local path=$1
+  if stat --help > /dev/null 2> /dev/null; then
+    [[ "$(stat --format="%A" "$path")" = *"x"* ]]
+  else
+    [[ -x "$path" ]]
+  fi
+}
+
 asdf_version() {
   local version git_rev
   version="v$(cat "$(asdf_dir)/version.txt")"
